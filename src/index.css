@@ -1,0 +1,177 @@
+:root {
+  --bg-color: #F3F4F6;
+  --panel-bg: #FFFFFF;
+  --text-main: #1F2937;
+  --text-muted: #6B7280;
+  --border-color: #E5E7EB;
+  --primary-green: #34D399; /* Low saturation green */
+  --primary-green-dark: #059669;
+  --primary-green-light: #D1FAE5;
+  --cell-bg-empty: #F3F4F6;
+  --cell-bg-checked: #10B981;
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base Layouts */
+.dashboard-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.panel {
+  background-color: var(--panel-bg);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+/* Utilities */
+.flex-row { display: flex; align-items: center; }
+.flex-col { display: flex; flex-direction: column; }
+.justify-between { justify-content: space-between; }
+.justify-center { justify-content: center; }
+.items-center { align-items: center; }
+.items-end { align-items: flex-end; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-4 { gap: 1rem; }
+.gap-6 { gap: 1.5rem; }
+
+.text-xs { font-size: 0.75rem; }
+.text-sm { font-size: 0.875rem; }
+.text-base { font-size: 1rem; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.text-muted { color: var(--text-muted); }
+.text-green { color: var(--primary-green-dark); }
+
+/* Components */
+.grid-table {
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.table-row {
+  display: flex;
+  align-items: center;
+  min-width: max-content;
+}
+
+.table-header {
+  margin-bottom: 0.5rem;
+  position: sticky;
+  top: 0;
+  background: var(--panel-bg);
+  z-index: 10;
+}
+
+.sticky-col {
+  position: sticky;
+  left: 0;
+  background-color: var(--panel-bg);
+  z-index: 5;
+  width: 180px;
+  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-right: 1rem;
+}
+
+.date-cell {
+  width: 32px;
+  flex-shrink: 0;
+  text-align: center;
+  margin-right: 4px;
+}
+
+.checkbox-cell {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+  border: 1px solid transparent;
+}
+
+.checkbox-cell.empty {
+  background-color: var(--cell-bg-empty);
+}
+
+.checkbox-cell.empty:hover {
+  background-color: #E5E7EB;
+  border-color: #D1D5DB;
+}
+
+.checkbox-cell.checked {
+  background-color: var(--cell-bg-checked);
+  color: white;
+  box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+}
+
+/* Progress bar global */
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background-color: var(--cell-bg-empty);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background-color: var(--cell-bg-checked);
+  transition: width 0.5s ease-out;
+}
+
+/* In-cell sparkline */
+.sparkline-bg {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  background: var(--cell-bg-empty);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.sparkline-fill {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  background: var(--primary-green-light);
+  border-right: 2px solid var(--primary-green);
+  transition: width 0.3s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
