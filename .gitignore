@@ -1,4 +1,4 @@
-﻿# Logs
+# Logs
 logs
 *.log
 npm-debug.log*
@@ -25,3 +25,9 @@ dist-ssr
 
 # Worktrees
 .worktrees/
+
+# Database
+data/*.db
+data/*.db-*
+data/*.sqlite
+data/*.sqlite-*
